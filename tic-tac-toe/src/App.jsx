@@ -1,3 +1,5 @@
+//Ultimo punto, why inmutability is important
+
 import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
@@ -10,10 +12,13 @@ function Square({ value, onSquareClick }) {
 
 //Vamos por Lifting State Up again
 export default function Board() {
-  const[xIsNext, setxIsNext] = useState(true);
+  const [xIsNext, setxIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+    if(squares[i]){
+      return;
+    }
     const nextSquares = squares.slice();
 
     if(squares[i] || calculateWinner(squares)) return
